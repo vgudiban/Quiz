@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kids Quiz Game</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#4CAF50">
+    <link rel="apple-touch-icon" href="icon-192.png">
+</head>
+<body>
+    <div class="container">
+        <!-- Home Screen -->
+        <div id="home-screen" class="screen active">
+            <div class="header">
+                <h1>🧠 Kids Quiz Game</h1>
+                <p>Test your knowledge!</p>
+            </div>
+            <div class="menu">
+                <button class="btn btn-primary" onclick="startQuiz()">Start Quiz</button>
+                <button class="btn btn-secondary" onclick="showScores()">High Scores</button>
+                <button class="btn btn-secondary" onclick="showAdmin()">Add Questions</button>
+            </div>
+        </div>
+
+        <!-- Quiz Screen -->
+        <div id="quiz-screen" class="screen">
+            <div class="quiz-header">
+                <div class="progress-bar">
+                    <div class="progress" id="progress"></div>
+                </div>
+                <div class="quiz-info">
+                    <span id="question-counter">Question 1 of 10</span>
+                    <span id="score">Score: 0</span>
+                </div>
+            </div>
+            
+            <div class="question-container">
+                <h2 id="question-text">Question will appear here</h2>
+                <div id="options-container" class="options">
+                    <!-- Options will be dynamically added -->
+                </div>
+            </div>
+            
+            <div class="quiz-controls">
+                <button id="next-btn" class="btn btn-primary" onclick="nextQuestion()" style="display: none;">Next Question</button>
+                <button class="btn btn-secondary" onclick="goHome()">Quit</button>
+            </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div id="results-screen" class="screen">
+            <div class="results-container">
+                <h2>🎉 Quiz Complete!</h2>
+                <div class="final-score">
+                    <span id="final-score">Your Score: 0/10</span>
+                    <div id="score-message"></div>
+                </div>
+                <div class="results-actions">
+                    <button class="btn btn-primary" onclick="startQuiz()">Play Again</button>
+                    <button class="btn btn-secondary" onclick="goHome()">Home</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- High Scores Screen -->
+        <div id="scores-screen" class="screen">
+            <div class="scores-container">
+                <h2>🏆 High Scores</h2>
+                <div id="scores-list">
+                    <!-- Scores will be dynamically added -->
+                </div>
+                <button class="btn btn-secondary" onclick="goHome()">Back to Home</button>
+            </div>
+        </div>
+
+        <!-- Admin Screen -->
+        <div id="admin-screen" class="screen">
+            <div class="admin-container">
+                <h2>➕ Add New Question</h2>
+                <form id="question-form">
+                    <div class="form-group">
+                        <label for="new-question">Question:</label>
+                        <textarea id="new-question" placeholder="Enter your question here..." required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="category">Category:</label>
+                        <select id="category" required>
+                            <option value="">Select Category</option>
+                            <option value="usa">USA</option>
+                            <option value="geography">Geography</option>
+                            <option value="science">Science</option>
+                            <option value="math">Math</option>
+                            <option value="logos">Logos</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Options:</label>
+                        <input type="text" id="option1" placeholder="Option 1" required>
+                        <input type="text" id="option2" placeholder="Option 2" required>
+                        <input type="text" id="option3" placeholder="Option 3" required>
+                        <input type="text" id="option4" placeholder="Option 4" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="correct-answer">Correct Answer (1-4):</label>
+                        <select id="correct-answer" required>
+                            <option value="">Select Correct Answer</option>
+                            <option value="0">Option 1</option>
+                            <option value="1">Option 2</option>
+                            <option value="2">Option 3</option>
+                            <option value="3">Option 4</option>
+                        </select>
+                    </div>
+                    
+                    <div class="admin-actions">
+                        <button type="submit" class="btn btn-primary">Add Question</button>
+                        <button type="button" class="btn btn-secondary" onclick="goHome()">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
