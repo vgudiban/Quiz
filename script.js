@@ -4,27 +4,120 @@ let score = 0;
 let questions = [];
 let selectedAnswer = null;
 let quizQuestions = [];
+let currentLevel = 'medium';
 
-// Sample questions for kids aged 10-12
-const defaultQuestions = [
+// Easy questions for kids aged 6-8
+const easyQuestions = [
+    // Colors and Basic Facts
+    {
+        question: "What color do you get when you mix red and yellow?",
+        options: ["Purple", "Orange", "Green", "Blue"],
+        correct: 1,
+        category: "colors",
+        level: "easy"
+    },
+    {
+        question: "How many legs does a spider have?",
+        options: ["6", "8", "10", "4"],
+        correct: 1,
+        category: "animals",
+        level: "easy"
+    },
+    {
+        question: "What sound does a cow make?",
+        options: ["Woof", "Meow", "Moo", "Oink"],
+        correct: 2,
+        category: "animals",
+        level: "easy"
+    },
+    {
+        question: "How many days are in a week?",
+        options: ["5", "6", "7", "8"],
+        correct: 2,
+        category: "basic",
+        level: "easy"
+    },
+    {
+        question: "What do bees make?",
+        options: ["Milk", "Honey", "Butter", "Cheese"],
+        correct: 1,
+        category: "animals",
+        level: "easy"
+    },
+    {
+        question: "What color is the sun?",
+        options: ["Blue", "Green", "Yellow", "Red"],
+        correct: 2,
+        category: "colors",
+        level: "easy"
+    },
+    {
+        question: "How many wheels does a bicycle have?",
+        options: ["1", "2", "3", "4"],
+        correct: 1,
+        category: "basic",
+        level: "easy"
+    },
+    {
+        question: "What do you use to brush your teeth?",
+        options: ["Fork", "Spoon", "Toothbrush", "Comb"],
+        correct: 2,
+        category: "basic",
+        level: "easy"
+    },
+    {
+        question: "Which animal says 'meow'?",
+        options: ["Dog", "Cat", "Bird", "Fish"],
+        correct: 1,
+        category: "animals",
+        level: "easy"
+    },
+    {
+        question: "What shape has three sides?",
+        options: ["Circle", "Square", "Triangle", "Rectangle"],
+        correct: 2,
+        category: "shapes",
+        level: "easy"
+    },
+    {
+        question: "What do you wear on your feet?",
+        options: ["Hat", "Gloves", "Shoes", "Scarf"],
+        correct: 2,
+        category: "basic",
+        level: "easy"
+    },
+    {
+        question: "How many fingers do you have on one hand?",
+        options: ["4", "5", "6", "3"],
+        correct: 1,
+        category: "body",
+        level: "easy"
+    }
+];
+
+// Medium questions for kids aged 9-12 (current questions)
+const mediumQuestions = [
     // USA Questions
     {
         question: "What is the capital of the United States?",
         options: ["New York", "Washington D.C.", "Los Angeles", "Chicago"],
         correct: 1,
-        category: "usa"
+        category: "usa",
+        level: "medium"
     },
     {
         question: "How many states are there in the USA?",
         options: ["48", "49", "50", "51"],
         correct: 2,
-        category: "usa"
+        category: "usa",
+        level: "medium"
     },
     {
         question: "Which president is on the $1 bill?",
         options: ["Abraham Lincoln", "George Washington", "Thomas Jefferson", "Benjamin Franklin"],
         correct: 1,
-        category: "usa"
+        category: "usa",
+        level: "medium"
     },
     
     // Geography Questions
@@ -32,25 +125,29 @@ const defaultQuestions = [
         question: "How many continents are there?",
         options: ["5", "6", "7", "8"],
         correct: 2,
-        category: "geography"
+        category: "geography",
+        level: "medium"
     },
     {
         question: "Which is the largest ocean?",
         options: ["Atlantic Ocean", "Indian Ocean", "Arctic Ocean", "Pacific Ocean"],
         correct: 3,
-        category: "geography"
+        category: "geography",
+        level: "medium"
     },
     {
         question: "Which continent is known as the 'Dark Continent'?",
         options: ["Asia", "Africa", "South America", "Australia"],
         correct: 1,
-        category: "geography"
+        category: "geography",
+        level: "medium"
     },
     {
         question: "What is the smallest ocean?",
         options: ["Arctic Ocean", "Indian Ocean", "Atlantic Ocean", "Pacific Ocean"],
         correct: 0,
-        category: "geography"
+        category: "geography",
+        level: "medium"
     },
     
     // Science Questions
@@ -58,25 +155,29 @@ const defaultQuestions = [
         question: "How many bones are there in an adult human body?",
         options: ["196", "206", "216", "226"],
         correct: 1,
-        category: "science"
+        category: "science",
+        level: "medium"
     },
     {
         question: "What gas do plants absorb from the atmosphere?",
         options: ["Oxygen", "Nitrogen", "Carbon Dioxide", "Hydrogen"],
         correct: 2,
-        category: "science"
+        category: "science",
+        level: "medium"
     },
     {
         question: "How many hearts does an octopus have?",
         options: ["1", "2", "3", "4"],
         correct: 2,
-        category: "science"
+        category: "science",
+        level: "medium"
     },
     {
         question: "What is the fastest land animal?",
         options: ["Lion", "Cheetah", "Horse", "Gazelle"],
         correct: 1,
-        category: "science"
+        category: "science",
+        level: "medium"
     },
     
     // Math Questions
@@ -84,25 +185,29 @@ const defaultQuestions = [
         question: "What is 15 × 8?",
         options: ["110", "120", "130", "140"],
         correct: 1,
-        category: "math"
+        category: "math",
+        level: "medium"
     },
     {
         question: "What is 144 ÷ 12?",
         options: ["11", "12", "13", "14"],
         correct: 1,
-        category: "math"
+        category: "math",
+        level: "medium"
     },
     {
         question: "What is the square root of 64?",
         options: ["6", "7", "8", "9"],
         correct: 2,
-        category: "math"
+        category: "math",
+        level: "medium"
     },
     {
         question: "What is 25% of 200?",
         options: ["40", "45", "50", "55"],
         correct: 2,
-        category: "math"
+        category: "math",
+        level: "medium"
     },
     
     // Logo Questions
@@ -110,21 +215,138 @@ const defaultQuestions = [
         question: "Which company has a bitten apple as its logo?",
         options: ["Microsoft", "Google", "Apple", "Samsung"],
         correct: 2,
-        category: "logos"
+        category: "logos",
+        level: "medium"
     },
     {
         question: "What color is the McDonald's 'M'?",
         options: ["Red", "Blue", "Yellow", "Green"],
         correct: 2,
-        category: "logos"
+        category: "logos",
+        level: "medium"
     },
     {
         question: "Which company's logo is a swoosh?",
         options: ["Adidas", "Nike", "Puma", "Reebok"],
         correct: 1,
-        category: "logos"
+        category: "logos",
+        level: "medium"
     }
 ];
+
+// Hard questions for kids aged 13+
+const hardQuestions = [
+    // Advanced Science
+    {
+        question: "What is the chemical symbol for gold?",
+        options: ["Go", "Gd", "Au", "Ag"],
+        correct: 2,
+        category: "science",
+        level: "hard"
+    },
+    {
+        question: "Which planet has the most moons?",
+        options: ["Jupiter", "Saturn", "Uranus", "Neptune"],
+        correct: 1,
+        category: "science",
+        level: "hard"
+    },
+    {
+        question: "What is the speed of light in a vacuum?",
+        options: ["299,792,458 m/s", "300,000,000 m/s", "186,000 miles/s", "All of the above"],
+        correct: 3,
+        category: "science",
+        level: "hard"
+    },
+    
+    // Advanced Geography
+    {
+        question: "What is the capital of Kazakhstan?",
+        options: ["Almaty", "Nur-Sultan", "Shymkent", "Aktobe"],
+        correct: 1,
+        category: "geography",
+        level: "hard"
+    },
+    {
+        question: "Which river flows through the most countries?",
+        options: ["Nile", "Amazon", "Danube", "Rhine"],
+        correct: 2,
+        category: "geography",
+        level: "hard"
+    },
+    {
+        question: "What is the deepest point on Earth?",
+        options: ["Mariana Trench", "Puerto Rico Trench", "Java Trench", "Philippine Trench"],
+        correct: 0,
+        category: "geography",
+        level: "hard"
+    },
+    
+    // Advanced Math
+    {
+        question: "What is the value of π (pi) to 3 decimal places?",
+        options: ["3.141", "3.142", "3.143", "3.144"],
+        correct: 1,
+        category: "math",
+        level: "hard"
+    },
+    {
+        question: "What is 2^10 (2 to the power of 10)?",
+        options: ["512", "1024", "2048", "4096"],
+        correct: 1,
+        category: "math",
+        level: "hard"
+    },
+    {
+        question: "What is the derivative of x²?",
+        options: ["x", "2x", "x²", "2x²"],
+        correct: 1,
+        category: "math",
+        level: "hard"
+    },
+    
+    // Advanced History
+    {
+        question: "In which year did World War II end?",
+        options: ["1944", "1945", "1946", "1947"],
+        correct: 1,
+        category: "history",
+        level: "hard"
+    },
+    {
+        question: "Who wrote 'The Origin of Species'?",
+        options: ["Isaac Newton", "Albert Einstein", "Charles Darwin", "Galileo Galilei"],
+        correct: 2,
+        category: "history",
+        level: "hard"
+    },
+    {
+        question: "Which empire was ruled by Julius Caesar?",
+        options: ["Greek Empire", "Roman Empire", "Byzantine Empire", "Ottoman Empire"],
+        correct: 1,
+        category: "history",
+        level: "hard"
+    },
+    
+    // Advanced Literature
+    {
+        question: "Who wrote 'Romeo and Juliet'?",
+        options: ["Charles Dickens", "William Shakespeare", "Jane Austen", "Mark Twain"],
+        correct: 1,
+        category: "literature",
+        level: "hard"
+    },
+    {
+        question: "What is the first book in the Harry Potter series?",
+        options: ["Chamber of Secrets", "Prisoner of Azkaban", "Philosopher's Stone", "Goblet of Fire"],
+        correct: 2,
+        category: "literature",
+        level: "hard"
+    }
+];
+
+// Combined default questions
+const defaultQuestions = [...easyQuestions, ...mediumQuestions, ...hardQuestions];
 
 // Initialize the app
 document.addEventListener('DOMContentLoaded', function() {
@@ -148,15 +370,42 @@ function saveQuestions() {
     localStorage.setItem('quizQuestions', JSON.stringify(questions));
 }
 
-// Start Quiz
-function startQuiz() {
-    if (questions.length < 5) {
-        alert('Need at least 5 questions to start the quiz!');
+// Show level selection screen
+function showLevelSelection() {
+    showScreen('level-screen');
+}
+
+// Start Quiz with level
+function startQuiz(level = 'medium') {
+    currentLevel = level;
+    
+    // Filter questions by level
+    let levelQuestions = [];
+    switch(level) {
+        case 'easy':
+            levelQuestions = easyQuestions;
+            break;
+        case 'medium':
+            levelQuestions = mediumQuestions;
+            break;
+        case 'hard':
+            levelQuestions = hardQuestions;
+            break;
+        default:
+            levelQuestions = mediumQuestions;
+    }
+    
+    // Add any custom questions of the same level
+    const customQuestions = questions.filter(q => q.level === level);
+    levelQuestions = [...levelQuestions, ...customQuestions];
+    
+    if (levelQuestions.length < 5) {
+        alert(`Need at least 5 ${level} questions to start the quiz!`);
         return;
     }
     
-    // Select 10 random questions
-    quizQuestions = shuffleArray([...questions]).slice(0, Math.min(10, questions.length));
+    // Select 10 random questions from the level
+    quizQuestions = shuffleArray([...levelQuestions]).slice(0, Math.min(10, levelQuestions.length));
     currentQuestionIndex = 0;
     score = 0;
     selectedAnswer = null;
@@ -326,6 +575,7 @@ document.getElementById('question-form').addEventListener('submit', function(e) 
     
     const questionText = document.getElementById('new-question').value.trim();
     const category = document.getElementById('category').value;
+    const level = document.getElementById('level').value;
     const option1 = document.getElementById('option1').value.trim();
     const option2 = document.getElementById('option2').value.trim();
     const option3 = document.getElementById('option3').value.trim();
@@ -333,7 +583,7 @@ document.getElementById('question-form').addEventListener('submit', function(e) 
     const correctAnswer = parseInt(document.getElementById('correct-answer').value);
     
     // Validation
-    if (!questionText || !category || !option1 || !option2 || !option3 || !option4 || isNaN(correctAnswer)) {
+    if (!questionText || !category || !level || !option1 || !option2 || !option3 || !option4 || isNaN(correctAnswer)) {
         showMessage('Please fill in all fields!', 'error');
         return;
     }
@@ -343,7 +593,8 @@ document.getElementById('question-form').addEventListener('submit', function(e) 
         question: questionText,
         options: [option1, option2, option3, option4],
         correct: correctAnswer,
-        category: category
+        category: category,
+        level: level
     };
     
     // Add to questions array

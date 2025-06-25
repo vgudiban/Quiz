@@ -18,9 +18,37 @@
                 <p>Test your knowledge!</p>
             </div>
             <div class="menu">
-                <button class="btn btn-primary" onclick="startQuiz()">Start Quiz</button>
+                <button class="btn btn-primary" onclick="showLevelSelection()">Start Quiz</button>
                 <button class="btn btn-secondary" onclick="showScores()">High Scores</button>
                 <button class="btn btn-secondary" onclick="showAdmin()">Add Questions</button>
+            </div>
+        </div>
+
+        <!-- Level Selection Screen -->
+        <div id="level-screen" class="screen">
+            <div class="level-container">
+                <h2>🎯 Choose Your Level</h2>
+                <div class="level-options">
+                    <div class="level-card" onclick="startQuiz('easy')">
+                        <div class="level-icon">🌟</div>
+                        <h3>Easy</h3>
+                        <p>Ages 6-8</p>
+                        <p>Simple questions about colors, animals, and basic facts</p>
+                    </div>
+                    <div class="level-card" onclick="startQuiz('medium')">
+                        <div class="level-icon">🚀</div>
+                        <h3>Medium</h3>
+                        <p>Ages 9-12</p>
+                        <p>Geography, science, and math questions</p>
+                    </div>
+                    <div class="level-card" onclick="startQuiz('hard')">
+                        <div class="level-icon">🏆</div>
+                        <h3>Hard</h3>
+                        <p>Ages 13+</p>
+                        <p>Advanced topics and challenging questions</p>
+                    </div>
+                </div>
+                <button class="btn btn-secondary" onclick="goHome()">Back to Home</button>
             </div>
         </div>
 
@@ -94,6 +122,23 @@
                             <option value="science">Science</option>
                             <option value="math">Math</option>
                             <option value="logos">Logos</option>
+                            <option value="colors">Colors</option>
+                            <option value="animals">Animals</option>
+                            <option value="basic">Basic Facts</option>
+                            <option value="shapes">Shapes</option>
+                            <option value="body">Body</option>
+                            <option value="history">History</option>
+                            <option value="literature">Literature</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="level">Difficulty Level:</label>
+                        <select id="level" required>
+                            <option value="">Select Level</option>
+                            <option value="easy">Easy (Ages 6-8)</option>
+                            <option value="medium">Medium (Ages 9-12)</option>
+                            <option value="hard">Hard (Ages 13+)</option>
                         </select>
                     </div>
                     
